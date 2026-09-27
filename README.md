@@ -53,16 +53,20 @@ No systemd? Run the sidecar manually instead (step 3):
 
 | Mode | Flags | Behavior | RAM |
 |---|---|---|---|
-| **offline-only** (default) | `--model-dir=model-parakeet-off` | Punctuated final ~0.5-1s after each pause. No live words. | ~1GB |
-| hybrid | `--model-dir=model-zip --final-model-dir=model-parakeet-off` | Live lowercase draft while speaking; parakeet final replaces it on pause. | ~1.6GB |
-| streaming-only | `--model-dir=model-zip` | Live draft only, regex-cleaned finals. | ~600MB |
+| **offline-only** (default, recommended) | `--model-dir=model-parakeet-off` | Punctuated parakeet-quality final ~0.5-1s after each pause. No live words. | ~1GB |
+| hybrid | `--model-dir=model-560 --final-model-dir=model-parakeet-off` | Live draft while speaking; parakeet final replaces it on pause. Needs a strong CPU (RTF < 1) — run `bench.py model-560` first. | ~1.8GB |
+
+If `bench.py` shows RTF > 1 for your CPU, stay on offline-only — it's the quality mode anyway.
 
 Other variants (240/560/1120ms streaming parakeet) exist but need a strong CPU;
 run `bench.py <model-dir>` to check RTF (must be < 1 for streaming modes).
 
 ## Model selection
 
-`setup-model.sh VARIANT=` : `parakeet-off` (default) | `zip` | `240` | `560` | `1120`
+`setup-model.sh VARIANT=` : `parakeet-off` (default) | `560` | `240` | `1120`
+
+(The lightweight zipformer streaming model also exists — `VARIANT=zip` — but its
+accuracy is far below parakeet; not recommended.)
 
 Edit `~/.config/systemd/user/hermes-dictate.service` → `systemctl --user restart hermes-dictate`.
 
