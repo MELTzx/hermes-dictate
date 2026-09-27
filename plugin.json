@@ -1,0 +1,7 @@
+{
+  "id": "hermes-dictate",
+  "name": "Dictate",
+  "version": "1.0.0",
+  "description": "Local-first live voice dictation into the composer — on-device ASR (parakeet + silero VAD), never sends, Enter is yours.",
+  "min_hermes_desktop": "1.0.0"
+}

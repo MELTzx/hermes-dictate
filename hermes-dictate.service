@@ -1,0 +1,15 @@
+[Unit]
+Description=Hermes Dictate sidecar (local ASR, ws://127.0.0.1:8765)
+After=graphical-session.target sound.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/.hermes/desktop-plugins/hermes-dictate
+ExecStart=%h/.hermes/desktop-plugins/hermes-dictate/.venv/bin/python -u %h/.hermes/desktop-plugins/hermes-dictate/sidecar.py --model-dir=model-parakeet-off
+Restart=on-failure
+RestartSec=5
+# the ASR decode wants CPU; keep it responsive
+Nice=-5
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,9 @@
+{
+  "name": "hermes-dictate",
+  "label": "Dictate",
+  "description": "Local-first live dictation into the composer (sidecar supervisor backend)",
+  "icon": "Mic",
+  "version": "1.0.0",
+  "tab": { "hidden": true },
+  "api": "plugin_api.py"
+}

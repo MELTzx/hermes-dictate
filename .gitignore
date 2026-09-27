@@ -1,0 +1,9 @@
+*.onnx
+*.tar.bz2
+model/
+model-*/
+.venv/
+__pycache__/
+*.pyc
+sidecar-supervisor.log
+test_wavs/
